@@ -78,6 +78,3 @@ The `site.yaml` playbook orchestrates the setup of the web server, Jenkins, and 
 - Ansible 2.9+
 - RHEL-based hosts
 - Python 3 with `PyMySQL` installed on the database host.
-
-## License
-This project is licensed under the MIT License.
