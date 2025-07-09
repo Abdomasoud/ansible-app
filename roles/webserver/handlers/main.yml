@@ -1,0 +1,11 @@
+---
+# handlers file for roles/webserver
+
+# - name: template changed
+#   ansible.builtin.debug:
+#     msg: "Template has been changed, notifying to restart nginx."
+
+- name: Restart nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted

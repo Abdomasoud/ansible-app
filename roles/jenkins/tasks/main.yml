@@ -1,0 +1,49 @@
+---
+# tasks file for roles/jenkins
+
+- name: Update apt cache and upgrade packages
+  yum:
+    update_cache: yes
+    state: latest
+
+- name: Install required dependencies
+  yum:
+    name:
+      - wget
+      - git
+    state: present
+
+- name: Install Java
+  yum:
+    name: java-21-openjdk
+    state: present
+
+
+- name: Add Jenkins repository
+  yum_repository:
+    name: jenkins
+    description: Jenkins-stable
+    baseurl: http://pkg.jenkins.io/redhat-stable/
+    gpgcheck: yes
+    gpgkey: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+    state: present
+
+- name: Install Jenkins
+  yum:
+    name: jenkins
+    state: present
+
+- name: Start Jenkins service
+  systemd:
+    name: jenkins
+    state: started
+    enabled: true
+
+- name: Retrieve Jenkins initial admin password
+  slurp:
+    src: /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_password
+
+- name: Decode and display Jenkins initial admin password
+  debug:
+    msg: "Jenkins initial admin password: {{ jenkins_password.content | b64decode }}"

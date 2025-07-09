@@ -1,0 +1,36 @@
+---
+# tasks file for roles/mariadb
+
+- name: Install MariaDB server
+  ansible.builtin.yum:
+    name: mariadb-server
+    state: present
+
+- name: Start MariaDB service
+  ansible.builtin.service:
+    name: mariadb
+    state: started
+    enabled: true
+
+- name: Install Python MySQL library
+  ansible.builtin.yum:
+    name: python3-PyMySQL
+    state: present
+
+- name: Copy custom my.cnf
+  ansible.builtin.copy:
+    src: files/my.cnf
+    dest: /etc/my.cnf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart MariaDB
+
+- name: Set MariaDB root password
+  ansible.builtin.mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mariadb_root_password }}"
+    login_unix_socket: /var/lib/mysql/mysql.sock
+    state: present
+

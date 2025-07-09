@@ -1,0 +1,20 @@
+---
+- name: install nginx and add custom web page
+  hosts: server
+  become: true
+  roles:
+    - roles/webserver
+
+- name: Install and Run Jenkins
+  hosts: jenkins
+  become: true
+  roles:
+    - roles/jenkins
+
+- name: Install and Run MariaDB
+  hosts: db
+  become: true
+  vars_files:
+    - roles/mariadb/vars/main.yml
+  roles:
+    - roles/mariadb

@@ -1,0 +1,4 @@
+---
+# vars file for roles/webserver
+name: "Abdelrhman Masoud"
+nginx_web_path: "/usr/share/nginx/html"
