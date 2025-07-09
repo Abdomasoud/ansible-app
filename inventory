@@ -1,8 +1,8 @@
 [server]
-server.example.com ansible_host=34.235.153.245
+server.example.com ansible_host=public_ip
 
 [jenkins]
-jenkins.example.com ansible_host=54.89.10.29
+jenkins.example.com ansible_host=public_ip
 
 [db]
-db.example.com ansible_host=44.198.56.159
+db.example.com ansible_host=public_ip
