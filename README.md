@@ -78,3 +78,14 @@ The `site.yaml` playbook orchestrates the setup of the web server, Jenkins, and 
 - Ansible 2.9+
 - RHEL-based hosts
 - Python 3 with `PyMySQL` installed on the database host.
+
+## Screenshots
+
+### Nginx Running
+![Nginx Running](images/nginx_running.png)
+
+### Jenkins Running
+![Jenkins Running](images/jenkins_running.png)
+
+### Database Running
+![Database Running](images/db_running.png)
